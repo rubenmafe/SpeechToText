@@ -1,29 +1,177 @@
-<RelativeLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 
-	<TextView
-		android:id="@+id/txvResult"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+	<View
+		android:layout_height="30dp"
+		android:layout_width="match_parent"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="30dp">
+
+		<View
+			android:layout_height="30dp"
+			android:layout_width="0dp"
+			android:layout_weight="1"/>
+
+		<ImageView
+			android:id="@+id/btnSpeak"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:layout_marginEnd="13dp"
+			android:layout_marginRight="13dp"
+			android:gravity="center"
+			android:onClick="getSpeechInput"
+			android:src="@drawable/ic_mic"
+			/>
+	</LinearLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:layout_alignParentTop="true"
-		android:layout_centerHorizontal="true"
-		android:layout_marginTop="100dp"
-		android:textColor="#000"
-		android:textSize="26sp"
-		android:textStyle="normal"/>
+		android:layout_marginTop="0dp"
+		android:src="@mipmap/template" />
 
-	<ImageView
-		android:id="@+id/btnSpeak"
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true"
-		android:layout_marginBottom="60dp"
-		android:gravity="center"
-		android:onClick="getSpeechInput"
-		android:src="@drawable/ic_mic"/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/title"
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:text="EL JUGADOR 1 HA GANADO"
+				android:textSize="20dp"
+				android:visibility="invisible"
+				android:textColor="@color/colorAccent"
+				android:layout_marginRight="20dp"
+				android:layout_marginLeft="20dp"
+				/>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="100dp"/>
+			<LinearLayout
+				android:layout_width="410dp"
+				android:layout_height="410dp"
+				android:orientation="vertical">
 
-</RelativeLayout>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="140dp">
+					<ImageView
+						android:id="@+id/img11"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+					<View
+						android:layout_width="20dp"
+						android:layout_height="140dp" />
+					<ImageView
+						android:id="@+id/img12"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+					<View
+						android:layout_width="20dp"
+						android:layout_height="140dp" />
+					<ImageView
+						android:id="@+id/img13"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="130dp">
+					<ImageView
+						android:id="@+id/img21"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+					<View
+						android:layout_width="25dp"
+						android:layout_height="140dp" />
+
+					<RelativeLayout
+						android:layout_width="120dp"
+						android:layout_height="120dp">
+
+						<ImageView
+							android:id="@+id/img22"
+							android:layout_width="120dp"
+							android:layout_height="120dp"
+							android:src="@mipmap/donald"
+							android:visibility="invisible"/>
+						<ImageView
+							android:id="@+id/restart"
+							android:layout_width="120dp"
+							android:layout_height="120dp"
+							android:src="@mipmap/icon_restart"
+							android:visibility="invisible"
+							android:onClick="restart"
+							/>
+					</RelativeLayout>
+
+					<View
+						android:layout_width="20dp"
+						android:layout_height="140dp" />
+					<ImageView
+						android:id="@+id/img23"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="140dp">
+					<ImageView
+						android:id="@+id/img31"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+					<View
+						android:layout_width="20dp"
+						android:layout_height="140dp" />
+					<ImageView
+						android:id="@+id/img32"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+					<View
+						android:layout_width="25dp"
+						android:layout_height="140dp" />
+					<ImageView
+						android:id="@+id/img33"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:src="@mipmap/donald"
+						android:visibility="invisible"/>
+				</LinearLayout>
+
+			</LinearLayout>
+		</LinearLayout>
+
+	</RelativeLayout>
+
+
+
+</LinearLayout>
