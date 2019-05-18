@@ -119,11 +119,13 @@
 							android:visibility="invisible"/>
 						<ImageView
 							android:id="@+id/restart"
-							android:layout_width="120dp"
-							android:layout_height="120dp"
+							android:layout_width="100dp"
+							android:layout_height="100dp"
 							android:src="@mipmap/icon_restart"
-							android:visibility="invisible"
 							android:onClick="restart"
+							android:layout_marginLeft="10dp"
+							android:layout_marginTop="10dp"
+							android:visibility="invisible"
 							/>
 					</RelativeLayout>
 

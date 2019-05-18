@@ -3,7 +3,9 @@ package com.sriyanksiddhartha.speechtotext;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 	private boolean user;
 	private ArrayList<ArrayList<String>> listOLists;
 	private String userNumber;
+	private TextToSpeech textToSpeech;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,36 @@ public class MainActivity extends AppCompatActivity {
 
 		this.user = true;
 
+		textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+			@Override
+			public void onInit(int i) {
+				if (i == TextToSpeech.SUCCESS) {
+					int result = textToSpeech.setLanguage(Locale.ENGLISH);
+
+					if (result == TextToSpeech.LANG_MISSING_DATA ||
+							result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+						Log.e("TTS", "Language not supported");
+					} else {
+						//
+					}
+				} else {
+					Log.e("TTS", "Initialization failed");
+				}
+			}
+		});
+
 		restartArray();
+	}
+
+	@Override
+	protected void onDestroy() {
+		if (textToSpeech != null) {
+			textToSpeech.stop();
+			textToSpeech.shutdown();
+		}
+
+		super.onDestroy();
 	}
 
 	// Actions
@@ -167,11 +199,23 @@ public class MainActivity extends AppCompatActivity {
 						this.title.setVisibility(View.INVISIBLE);
 					} else {
 						this.title.setText("Invalid, try again");
+						textToSpeech.speak(this.title.getText().toString(),
+								TextToSpeech.QUEUE_FLUSH, null, null);
 						this.title.setVisibility(View.VISIBLE);
 					}
 
 					if (isWinner()) {
 						this.title.setText(String.format("Player %s wins", this.userNumber));
+						this.title.setVisibility(View.VISIBLE);
+						textToSpeech.speak(this.title.getText().toString(),
+								TextToSpeech.QUEUE_FLUSH, null, null);
+						setFinish();
+					}
+
+					if(isDraw()) {
+						this.title.setText("It's a tie");
+						textToSpeech.speak(this.title.getText().toString(),
+								TextToSpeech.QUEUE_FLUSH, null, null);
 						this.title.setVisibility(View.VISIBLE);
 						setFinish();
 					}
@@ -282,6 +326,16 @@ public class MainActivity extends AppCompatActivity {
 		areEquals = (first.equals(second));
 		return (second.equals(third) && areEquals && first != "0");
 
+	}
+
+	private boolean isDraw() {
+		boolean isDraw = true;
+		for (int i=0; i< this.listOLists.size(); i++) {
+			for (int j=0;j <this.listOLists.get(0).size(); j++) {
+				isDraw = (this.listOLists.get(i).get(j) != "0") && isDraw;
+			}
+		}
+		return isDraw;
 	}
 
 	private void setFinish() {
