@@ -49,11 +49,13 @@ public class MainActivity extends AppCompatActivity {
 		image32 = (ImageView) findViewById(R.id.img32);
 		image33 = (ImageView) findViewById(R.id.img33);
 		restart = (ImageView) findViewById(R.id.restart);
+		this.restart.setImageResource(R.mipmap.icon_restart);
 
 		title = (TextView) findViewById(R.id.title);
 
 		this.user = true;
 
+		//S'initzialitza l'objecte per poder pasar de text a speech
 		textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
 			@Override
 			public void onInit(int i) {
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 	// Actions
 	public void getSpeechInput(View view) {
 
+		//Amb aquesta activitat s'inicia el recorder de veu de Google
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
@@ -104,8 +107,10 @@ public class MainActivity extends AppCompatActivity {
 		this.restart.setVisibility(View.INVISIBLE);
 		this.title.setVisibility(View.INVISIBLE);
 		restartArray();
+		restartViews();
 	}
 
+	//Quan arriba la informació de l'speech pasat a text arriba a aquesta funció
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -183,6 +188,22 @@ public class MainActivity extends AppCompatActivity {
 								this.listOLists.get(2).set(2, newValue);
 							}
 							break;
+						case "Carla":
+						case "carla":
+						case "Anna":
+						case "anna":
+						case "ana":
+						case "Ana":
+						case "Héctor":
+						case "Hector":
+							easterEgg();
+							this.title.setText("OOOOOOOOOOOOOOOOOOOOOOOOO");
+							//Es crida la funció "speak" de l'objecte "textToSpeech"
+							// pasant-li el text que ha de transformar en veu
+							textToSpeech.speak(this.title.getText().toString(),
+									TextToSpeech.QUEUE_FLUSH, null, null);
+							this.title.setVisibility(View.VISIBLE);
+							return;
 						default:
 							break;
 					}
@@ -199,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
 						this.title.setVisibility(View.INVISIBLE);
 					} else {
 						this.title.setText("Invalid, try again");
+						//Es crida la funció "speak" de l'objecte "textToSpeech"
+						// pasant-li el text que ha de transformar en veu
 						textToSpeech.speak(this.title.getText().toString(),
 								TextToSpeech.QUEUE_FLUSH, null, null);
 						this.title.setVisibility(View.VISIBLE);
@@ -371,5 +394,39 @@ public class MainActivity extends AppCompatActivity {
         this.listOLists.add(linea2);
         this.listOLists.add(linea3);
     }
+
+    private void easterEgg(){
+		this.image11.setVisibility(View.VISIBLE);
+		this.image11.setImageResource(R.mipmap.corazon);
+		this.image12.setVisibility(View.VISIBLE);
+		this.image12.setImageResource(R.mipmap.corazon);
+		this.image13.setVisibility(View.VISIBLE);
+		this.image13.setImageResource(R.mipmap.corazon);
+		this.image21.setVisibility(View.VISIBLE);
+		this.image21.setImageResource(R.mipmap.corazon);
+		this.image22.setVisibility(View.INVISIBLE);
+		this.image23.setVisibility(View.VISIBLE);
+		this.image23.setImageResource(R.mipmap.corazon);
+		this.image31.setVisibility(View.VISIBLE);
+		this.image31.setImageResource(R.mipmap.corazon);
+		this.image32.setVisibility(View.VISIBLE);
+		this.image32.setImageResource(R.mipmap.corazon);
+		this.image33.setVisibility(View.VISIBLE);
+		this.image33.setImageResource(R.mipmap.corazon);
+		this.restart.setVisibility(View.VISIBLE);
+		this.restart.setImageResource(R.mipmap.corazon);
+	}
+
+	private void restartViews() {
+		this.image11.setVisibility(View.INVISIBLE);
+		this.image12.setVisibility(View.INVISIBLE);
+		this.image13.setVisibility(View.INVISIBLE);
+		this.image21.setVisibility(View.INVISIBLE);
+		this.image22.setVisibility(View.INVISIBLE);
+		this.image23.setVisibility(View.INVISIBLE);
+		this.image31.setVisibility(View.INVISIBLE);
+		this.image32.setVisibility(View.INVISIBLE);
+		this.image33.setVisibility(View.INVISIBLE);
+	}
 
 }
